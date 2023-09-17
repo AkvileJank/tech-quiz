@@ -1,10 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/home/HomeView.vue'
-import ConfigureQuiz from '@/views/quizConfig/ConfigureQuiz.vue'
-import ScoresView from '@/views/scores/ScoresView.vue'
-import QuizQuestions from '@/views/questionsDisplay/QuizQuestions.vue'
-import QuizResult from '@/views/result/QuizResult.vue'
-import ErrorDisplay from '@/views/questionsDisplay/error/ErrorDisplay.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,32 +6,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: () => import('@/views/home/HomeView.vue')
     },
     {
       path: '/configure',
       name: 'configure',
-      component: ConfigureQuiz
+      component: () => import('@/views/quizConfig/ConfigureQuiz.vue')
     },
     {
       path: '/scores',
       name: 'scores',
-      component: ScoresView
+      component: () => import('@/views/scores/ScoresView.vue')
     },
     {
       path: '/quiz',
       name: 'quiz',
-      component: QuizQuestions
+      component: () => import('@/views/questionsDisplay/QuizQuestions.vue')
     },
     {
       path: '/result',
       name: 'result',
-      component: QuizResult
+      component: () => import('@/views/result/QuizResult.vue')
     },
     {
       path: '/error',
       name: 'error',
-      component: ErrorDisplay
+      component: () => import('@/views/questionsDisplay/error/ErrorDisplay.vue')
     }
   ]
 })

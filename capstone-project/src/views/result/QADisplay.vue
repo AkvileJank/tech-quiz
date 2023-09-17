@@ -16,7 +16,7 @@ function isCorrectAnswer(answerKey: string, question: Question) {
 }
 </script>
 <template>
-  <div v-for="(question, key) in currentSession.sessionQuestions" :key="key" data-testid="questionsAnswersDisplay">
+  <div v-for="(question, key) in currentSession.sessionQuestions" :key="key">
     <QuestionText :question="question" :obj-key="key" />
     <div class="mb-4">
       <div

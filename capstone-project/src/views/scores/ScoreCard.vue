@@ -19,10 +19,12 @@ function categorizeSessions() {
     categorizedSessions.value[session.sessionCategory].push(session)
   })
 }
+
 function showAttempt(session: Session) {
   singleSessionStore().selectNewSession(session)
   router.push({ name: 'result' })
 }
+
 onMounted(() => {
   categorizeSessions()
 })

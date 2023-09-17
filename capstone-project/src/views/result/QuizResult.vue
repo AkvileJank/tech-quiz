@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import router from '@/router'
 import ReturnHomeButton from '@/components/ReturnHomeButton.vue'
 import ScorePercentage from '@/components/ScorePercentage.vue'
 import singleSessionStore from '@/stores/singleSessionStore'
@@ -16,6 +15,6 @@ const currentSession = singleSessionStore()
   <ScorePercentage :session-score="currentSession.sessionScore" />
   <div class="m-5">
     <QADisplay />
-    <ReturnHomeButton :router="router" />
+    <ReturnHomeButton />
   </div>
 </template>

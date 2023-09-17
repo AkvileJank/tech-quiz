@@ -6,7 +6,11 @@ import singleSessionStore from '@/stores/singleSessionStore'
 import parameterStore from '@/stores/parameterStore'
 import allSessionsStore from '@/stores/allSessionsStore'
 import QuestionText from '@/components/QuestionText.vue'
-import { fetchQuizQuestions, transformQuestionData } from './fetchQuestions/fetchQuestions'
+import {
+  fetchQuizQuestions,
+  transformQuestionData,
+  loadErrorPage
+} from './fetchQuestions/fetchQuestions'
 
 export type Question = {
   id: number
@@ -36,9 +40,10 @@ type SelectedAnswers = Record<number, string | undefined>
 const dataLoaded = ref(false)
 const questions = ref<Question[]>([])
 const { category, limit } = storeToRefs(parameterStore())
-const questionsData = ref<QuestionData[]>([])
 const selectedAnswers = ref<SelectedAnswers>({})
+const answerId = 0
 
+// check if selected answer exists and is equal to correct answer
 function correctCounter(count: number, question: Question) {
   if (question.selectedAnswer && question.selectedAnswer === question.correctAnswer) {
     question.isCorrect = true
@@ -49,6 +54,8 @@ function correctCounter(count: number, question: Question) {
   return count
 }
 
+// move everything that's onSubmit in one function and then refactor
+// computed is used for displaying
 const percentageCount = computed(() => {
   let count = 0
   questions.value.forEach(question => {
@@ -61,12 +68,14 @@ const percentageCount = computed(() => {
 
 const { sessionScore, sessionCategory, sessionQuestions } = storeToRefs(singleSessionStore())
 
+// replace previous session data with this one's
 function updateSession() {
   sessionScore.value = percentageCount.value
   sessionCategory.value = category.value
   sessionQuestions.value = questions.value
 }
 
+// updated session object to allSessions array and navigate to result page
 function onSubmit() {
   updateSession()
   const sessionObj = singleSessionStore().createSessionObject()
@@ -74,11 +83,20 @@ function onSubmit() {
   router.push({ name: 'result' })
 }
 
+// fetch quiz questions data from the api and assign transformed data to questions value
 async function initializeQuiz() {
-  questionsData.value = await fetchQuizQuestions(category.value, limit.value, dataLoaded, router)
-  questions.value = questionsData.value.map(transformQuestionData)
+  try {
+    const questionsData = await fetchQuizQuestions(category.value, limit.value)
+    questions.value = questionsData.map(transformQuestionData)
+    dataLoaded.value = true
+  } catch (error) {
+    loadErrorPage(router, error)
+  }
 }
 
+function getAnswerTestId(questionKey: number, answerIndex: string) {
+  return `question-${questionKey}-${answerIndex}`
+}
 // Call initializeQuiz when the component is mounted
 onMounted(initializeQuiz)
 </script>
@@ -97,7 +115,7 @@ onMounted(initializeQuiz)
           :key="index"
           class="flex items-center pl-4 py-1.5 border rounded-2xl border-gray-700 mb-1.5"
         >
-          <label class="text-base" data-testid="answerOption">
+          <label class="text-base" for="index" :data-testid="getAnswerTestId(key, index)">
             <input
               v-if="answer"
               type="radio"
@@ -123,4 +141,3 @@ onMounted(initializeQuiz)
     </div>
   </div>
 </template>
-./fetchQuestions/fetchQuestions

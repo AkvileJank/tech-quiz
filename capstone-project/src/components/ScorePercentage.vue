@@ -6,6 +6,7 @@ defineProps<{
 }>()
 
 const route = useRoute()
+
 function getSize() {
   if (route.name === 'scores') return '2.8rem'
   return '4rem'

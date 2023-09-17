@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import allSessionsStore from '@/stores/allSessionsStore'
-import router from '@/router'
 import ReturnHomeButton from '@/components/ReturnHomeButton.vue'
 import forScores from './for-scores.svg'
 import ScoreCard from './ScoreCard.vue'
@@ -18,7 +17,7 @@ const { allSessions } = allSessionsStore()
       :src="forScores"
       alt="Rocket landed at a station and moon"
     />
-    <ReturnHomeButton :router="router" />
+    <ReturnHomeButton />
   </div>
   <div v-else>
     <h1 class="text-3xl font-bold text-center pb-4">Your scores:</h1>
