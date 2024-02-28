@@ -1,6 +1,20 @@
 # Tech quiz app
 
-This is a web application made with Vue3 using Vite.
+This is a fully Vue.js with TypeScript web app for solving tech quizzes.
+
+## Tech stack
+- Vue.js with TypeScript
+- VueRouter for routing
+- Pinia for state management in local storage
+- Playwright for E2E tests
+- Vitest for unit tests
+
+## Functionalities
+A user can:
+- choose parameters for the quiz
+- solve the quiz by requested parameters
+- see quiz result
+- see previous quizzes results
 
 ## Project Setup
 
@@ -29,3 +43,6 @@ npm run build
 ```sh
 npm run preview
 ```
+
+### Visit project's page
+http://localhost:5173/
