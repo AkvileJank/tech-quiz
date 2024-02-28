@@ -1,6 +1,4 @@
 import { expect, it, describe } from 'vitest'
-import { ref } from 'vue'
-import router from '@/router'
 import * as fetchQuestions from './fetchQuestions'
 import type { QuestionData } from '../QuizQuestions.vue'
 
@@ -28,14 +26,11 @@ describe('returning api url', () => {
 describe('fetching questions data from api', () => {
   const category = 'Linux'
   const limit = 5
-  const dataLoaded = ref(false)
 
   it('fetch 5 questions from api', async () => {
     const dataToTest: QuestionData[] = await fetchQuestions.fetchQuizQuestions(
       category,
       limit,
-      dataLoaded,
-      router
     )
     const result = dataToTest.length
     expect(result).toBe(5)

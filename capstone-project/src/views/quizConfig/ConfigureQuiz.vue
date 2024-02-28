@@ -5,9 +5,7 @@ import CategorySelection from './CategorySelection.vue'
 import LimitRange from './LimitRange.vue'
 
 function isButtonDisabled() {
-  if (!parameterStore() || parameterStore().category === '' || parameterStore().limit === 0)
-    return true
-  return false
+  return (!parameterStore() || parameterStore().category === '' || parameterStore().limit === 0)
 }
 
 function goToQuiz() {

@@ -41,7 +41,6 @@ const dataLoaded = ref(false)
 const questions = ref<Question[]>([])
 const { category, limit } = storeToRefs(parameterStore())
 const selectedAnswers = ref<SelectedAnswers>({})
-const answerId = 0
 
 // check if selected answer exists and is equal to correct answer
 function correctCounter(count: number, question: Question) {

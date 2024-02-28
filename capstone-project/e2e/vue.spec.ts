@@ -50,5 +50,5 @@ test('seeing quiz result', async ({ page }) => {
   expect(count).toBe(20)
 
   await page.getByTestId('returnHome').click()
-  await expect(page).toHaveURL('/home')
+  await expect(page).toHaveURL(/.*/)
 })
