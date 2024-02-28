@@ -1,4 +1,4 @@
-# Tech quiz app
+# Tech quizzes app
 
 This is a functional Vue.js and TypeScript responsive web app for solving tech quizzes.
 
