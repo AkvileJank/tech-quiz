@@ -1,6 +1,14 @@
 # Tech quiz app
 
-This is a fully Vue.js with TypeScript web app for solving tech quizzes.
+This is a functional Vue.js and TypeScript responsive web app for solving tech quizzes.
+
+<p float="left">
+<img width="300" src="https://github.com/AkvileJank/tech-quiz/blob/main/demo/home-xl.png">
+<img width="128" src="https://github.com/AkvileJank/tech-quiz/blob/main/demo/home-xs.png">
+<img width="128" src="https://github.com/AkvileJank/tech-quiz/blob/main/demo/quiz.png">
+<img width="128" src="https://github.com/AkvileJank/tech-quiz/blob/main/demo/result.png">
+<img width="128" src="https://github.com/AkvileJank/tech-quiz/blob/main/demo/scores.png">
+</p>
 
 ## Tech stack
 - Vue.js with TypeScript
